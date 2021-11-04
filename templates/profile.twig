@@ -1,0 +1,80 @@
+{% extends "base.twig" %}
+
+{% block title %}LSteam Profile page{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ full_url_for('home') }}assets/css/header.css"/>
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+
+    <a href="{{ url_for('friends') }}">
+        <button class="btn btn-outline-dark me-2" name="" id="" type="button">
+            Friends
+        </button>
+    </a>
+
+    <a href="{{ url_for('store') }}">
+        <button class="btn btn-outline-dark me-2" name="" id="" type="button">
+            Store
+        </button>
+    </a>
+
+    <a href="{{ url_for('my_games') }}">
+        <button class="btn btn-outline-dark me-2" name="" id="" type="button">
+            My Games
+        </button>
+    </a>
+
+    <a href="{{ url_for('showList') }}">
+        <button class="btn btn-outline-dark me-2" name="" id="" type="button">
+            Wish List
+        </button>
+    </a>
+
+    <a href="{{ url_for('wallet') }}">
+        <button class="btn btn-outline-dark me-2" name="" id="" type="button" href="{{ url_for('wallet') }}">
+            Wallet
+        </button>
+    </a>
+
+    <form action="{{ url_for('logout') }}" method="POST" accept-charset="utf-8" style="background-position: center top;">
+        <button class="btn btn-outline-dark me-2" name="" id="" type="submit">
+            Log Out
+        </button>
+    </form>
+
+    <a class="navbar-brand" href="{{ url_for('profile') }}">
+        <img src="{{ full_url_for('home') }}assets/uploads/{% if formData.photo %}{{ formData.photo }}{% endif %}" alt="" width="40">
+    </a>
+
+{% endblock %}
+
+{% block content %}
+    <main class="main" style="height: 405px; margin-bottom: 17%">
+        <b><p class="section_title">Profile</p></b>
+        <form action="{{ url_for('picture_profile') }}" method="POST" enctype="multipart/form-data" accept-charset="utf-8" style="background-position: center top;">
+            <p class="text-gray">Username: <input type= "text" name="username" value="{% if formData.username %}{{ formData.username }}{% endif %}" disabled></p>
+
+            <p class="text-gray">Email: <input type= "text" name="email" value="{% if formData.email %}{{ formData.email }}{% endif %}" disabled></p>
+
+            <p class="text-gray">Birthday: <input type= "date" name="birthday" value="{% if formData.birthday %}{{ formData.birthday }}{% endif %}" disabled></p>
+
+            <p class="text-gray">Phone: <input type= "text" name="phone" value="{% if formData.phone %}{{ formData.phone }}{% endif %}"></p>
+            {% if formErrors.phone %}
+                <p style="color: red;">{{ formErrors.phone }}</p>
+            {% endif %}
+
+            <p class="text-gray">Picture: <input type="file" name="fileToUpload" id="fileToUpload"></p>
+            {% if formErrors.image %}
+                <p style="color: red;">{{ formErrors.image }}</p>
+            {% endif %}
+
+            <b><input type="submit" class="btn btn-outline-dark me-2" name="upload" value="Update"  class="button-gray" style="margin-left: 2%" ></b>
+
+            <a href="{{ url_for('changePassword') }}">Change Password</a>
+        </form>
+    </main>
+{% endblock %}

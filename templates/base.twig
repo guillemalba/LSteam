@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+
+    {% block styles %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ full_url_for('home') }}assets/css/style.css"/>
+        <link rel="stylesheet" href="{{ full_url_for('home') }}assets/css/register.css"/>
+        <link rel="stylesheet" href="{{ full_url_for('home') }}assets/css/footer.css"/>
+    {% endblock %}
+
+    {% block head %}
+        <meta charset="UTF-8">
+        <meta name="description" content="Web page to access to a wide range of games">
+        <meta name="keywords" content="LSteam, Games,La Salle Barcelona, Projectes Web, Videogames, Store">
+        <meta name="author" content="Silvia Blasi - Guillem Alba - Alex Puigdengolas">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% endblock %}
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar navbar-light" style="background-color: #FEFAAD">
+            <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('home') }}">
+                <img src="{{ full_url_for('home') }}assets/images/Steam_logo.png" alt="" width="70" class="d-inline-block"> LSTEAM
+            </a>
+                <div class="d-flex">
+                    {% block header %}
+
+                    <a href="{{ url_for('login') }}">
+                        <button class="btn btn-outline-dark me-2" name="login" id="login" type="button">
+                            Log In
+                        </button>
+                    </a>
+
+                    <a href="{{ url_for('register') }}";>
+                        <button class="btn btn-outline-dark me-2" name="register" id="register" type="button">
+                            Register
+                        </button>
+                    </a>
+
+                    {% endblock %}
+                </div>
+            </div>
+        </nav>
+    </header>
+{% block content %}{% endblock %}
+
+{% block footer %}
+    <footer class="footer" style="background-color: #FEFAAD;">
+        <div class="footer_div">
+            <div id="footer_logo_steam">
+                <img src="https://store.akamai.steamstatic.com/public/images/v6/logo_steam_footer.png" alt="Valve Software" border="0">
+            </div>
+            <div class="footer_text">
+            <div>
+                <p>© 2021 Valve Corporation. Todos los derechos reservados. Todas las marcas registradas pertenecen a sus respectivos dueños en EE. UU. y otros países.
+                Todos los precios incluyen IVA (donde sea aplicable).&nbsp;&nbsp;</p>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+{% block scripts %}{% endblock %}
+
+</body>
+</html>

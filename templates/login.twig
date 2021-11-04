@@ -1,0 +1,27 @@
+{% extends "base.twig" %}
+
+{% block title %}Login page{% endblock %}
+
+{% block content %}
+    <main class="main" style="height: 405px; margin-bottom: 17%">
+        <b><p class="section_title">Login</p></b>
+        <form action="{{ url_for('handle-login') }}" method="POST" accept-charset="utf-8" style="background-position: center top;">
+            <p class="text-white">Username: <input type= "text" name="username" placeholder="Username or email" value="{% if formData.username %}{{ formData.username }}{% endif %}"></p>
+            {% if formErrors.username %}
+                <p style="color: red;">{{ formErrors.username }}</p>
+            {% endif %}
+            <p class="text-white">Password: <input type = "password" name="pass" placeholder="Password" value="{% if formData.pass %}{{ formData.pass }}{% endif %}"></p>
+            
+            {% if formErrors.activated %}
+                <p style="color: red;">{{ formErrors.activated }}</p>
+            {% endif %}
+            {% if formErrors.pass %}
+                <p style="color: red;">{{ formErrors.pass }}</p>
+            {% endif %}
+            <b ><input type="submit" class="btn btn-outline-dark me-2" name="login" value="Login"  class="button-gray" style="margin-left: 2%" ></b> 
+            {% if formErrors.nosingin %}
+                <p style="color: red;">{{ formErrors.nosingin}}</p>
+            {% endif %}
+        </form>
+    </main>
+{% endblock %}

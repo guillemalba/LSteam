@@ -1,0 +1,70 @@
+{% extends "base.twig" %}
+
+{% block title %}Wallet page{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ full_url_for('home') }}assets/css/header.css"/>
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+
+    <a href="{{ url_for('friends') }}">
+        <button class="btn btn-outline-dark me-2" name="" id="" type="button">
+            Friends
+        </button>
+    </a>
+    
+    <a href="{{ url_for('store') }}">
+        <button class="btn btn-outline-dark me-2" name="" id="" type="button">
+            Store
+        </button>
+    </a>
+
+    <a href="{{ url_for('my_games') }}">
+        <button class="btn btn-outline-dark me-2" name="" id="" type="button">
+            My Games
+        </button>
+    </a>
+
+    <a href="{{ url_for('showList') }}">
+        <button class="btn btn-outline-dark me-2" name="" id="" type="button">
+            Wish List
+        </button>
+    </a>
+
+    <a href="{{ url_for('wallet') }}">
+        <button class="btn btn-outline-dark me-2" name="" id="" type="button" href="{{ url_for('wallet') }}">
+            Wallet
+        </button>
+    </a>
+
+    <form action="{{ url_for('logout') }}" method="POST" accept-charset="utf-8" style="background-position: center top;">
+        <button class="btn btn-outline-dark me-2" name="" id="" type="submit">
+            Log Out
+        </button>
+    </form>
+
+    <a class="navbar-brand" href="{{ url_for('profile') }}">
+        <img src="{{ full_url_for('home') }}assets/uploads/{% if formData.photo %}{{ formData.photo }}{% endif %}" alt="" width="40">
+    </a>
+
+{% endblock %}
+
+{% block content %}
+    <main class="main" style="height: 405px; margin-bottom: 17%">
+        <b><p class="section_title">Wallet</p></b>
+        <form action="{{ url_for('handle-wallet') }}" method="POST" accept-charset="utf-8" style="background-position: center top;">
+            <p class="text-gray" >Actual amount: {% if formData.wallet %}{{ formData.wallet }}{% endif %}€</p>
+            <p class="text-gray">Amount to add: <input type= "text" name="amount"></p>
+            {% if formErrors.amount %}
+                <p style="color: red;">{{ formErrors.amount}}</p>
+            {% endif %}
+            {% if formOk.ok %}
+                <p style="color: green;">{{ formOk.ok}}</p>
+            {% endif %}
+            <b><input type="submit" class="btn btn-outline-dark me-2" name="submit" value="Send"  class="button-gray" style="margin-left: 2%" ></b>
+        </form>
+    </main>
+{% endblock %}

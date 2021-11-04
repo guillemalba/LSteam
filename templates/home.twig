@@ -1,0 +1,54 @@
+{% extends "base.twig" %}
+
+{% block title %}Home page{% endblock %}
+
+{% block content %}
+        <section>
+            <div class="content">
+                <div class="intro-photo">
+                    <img src="{{ full_url_for('home') }}assets/images/Background.png" width="100%">
+                    <div class="intro text-center">
+                        <h1>ACCESS GAMES INSTANTLY</h1>
+                        <p>With nearly 30,000 games from AAA to indie and everything in-between. Enjoy exclusive deals, automatic game updates, and other great perks.</p>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row vertical-align">
+                        <div class="col-sm text-center" style="background-color: #477291">
+                            <h2>Join the Community</h2>
+                            <p>Meet new people, join groups, form clans, chat in-game and more! With over 100 million potential friends (or enemies), the fun never stops.</p>
+                        </div>
+                        <div class="col-sm">
+                            <img src="{{ full_url_for('home') }}assets/images/Community.jpg" class="img-fluid" width="100%">
+                        </div>
+                    </div>
+                    <div class="row vertical-align">
+                        <div class="col-sm">
+                            <img src="{{ full_url_for('home') }}assets/images/Experience.jpg" class="img-fluid" width="100%">
+                        </div>
+                        <div class="col-sm text-center" style="background-color: #8CA6BA">
+                        <h2>Experience LSteam Hardware</h2>
+                            <p>We created the LSteam Controller and the VR technologies that power the HTC Vive to making gaming on the PC even better.</p>
+                        </div>
+                    </div>
+                    <div class="row vertical-align">
+                        <div class="col-sm text-center" style="background-color: #BACAD5">
+                            <h2>Release your Game</h2>
+                            <p>Steamworks is the set of tools and services that help game developers and publishers get the most out of distributing games on LSteam.</p>
+                        </div>
+                        <div class="col-sm">
+                            <img src="{{ full_url_for('home') }}assets/images/Computer.jpg" class="img-fluid" width="100%">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    {% if notifications is not empty %}
+        <ol>
+            {% for notification in notifications %}
+                <li>{{ notification }}</li>
+            {% endfor %}
+        </ol>
+    {% endif %}
+{% endblock %}

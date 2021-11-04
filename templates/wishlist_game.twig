@@ -1,0 +1,84 @@
+{% extends "base.twig" %}
+
+{% block title %}WishList page{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ full_url_for('home') }}assets/css/header.css"/>
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+
+    <a href="{{ url_for('friends') }}">
+        <button class="btn btn-outline-dark me-2" name="" id="" type="button">
+            Friends
+        </button>
+    </a>
+    
+    <a href="{{ url_for('store') }}">
+        <button class="btn btn-outline-dark me-2" name="" id="" type="button">
+            Store
+        </button>
+    </a>
+
+    <a href="{{ url_for('my_games') }}">
+        <button class="btn btn-outline-dark me-2" name="" id="" type="button">
+            My Games
+        </button>
+    </a>
+
+    <a href="{{ url_for('showList') }}">
+        <button class="btn btn-outline-dark me-2" name="" id="" type="button">
+            Wish List
+        </button>
+    </a>
+
+    <a href="{{ url_for('wallet') }}">
+        <button class="btn btn-outline-dark me-2" name="" id="" type="button" href="{{ url_for('wallet') }}">
+            Wallet
+        </button>
+    </a>
+
+    <form action="{{ url_for('logout') }}" method="POST" accept-charset="utf-8" style="background-position: center top;">
+        <button class="btn btn-outline-dark me-2" name="" id="" type="submit">
+            Log Out
+        </button>
+    </form>
+
+    <a class="navbar-brand" href="{{ url_for('profile') }}">
+        <img src="{{ full_url_for('home') }}assets/uploads/{% if formData.photo %}{{ formData.photo }}{% endif %}" alt="" width="40">
+    </a>
+
+{% endblock %}
+
+{% block content %}
+    <main class="main" style="height: auto; margin-bottom: 17%">
+        <b><p class="section_title">{{formData.games[0].title}}</p></b>
+            {% if formErrors.error is not empty %}
+                <p>{{ formErrors.error }}</p>
+                <a href="{{ url_for('store') }}">
+                    <button class="btn btn-outline-dark me-2" name="" id="" type="button">
+                        Back to Store
+                    </button>
+                </a>
+            {% else %}
+                <table>
+                {% for game in formData.games %}
+                <tr style="background-size: 119.38px 38px; background: #FCFAB0; border-width: 2px; border-style: outset;">
+                    <td>
+                        <img src="{{ game.thumb }}">
+                    </td>
+                    <td>
+                        <h6 style ="margin-top: 30px; margin-left: 30px;">{{ game.title }}</h6>
+                        <p style ="margin-left: 30px;">ID: {{ game.gameID }}</p>
+                        <p style ="margin-left: 30px;">Normal price: {{ game.normalPrice }} $</p>
+
+                    </td>
+                </tr>
+                {% endfor %}
+                </table>
+            {% endif %}
+            
+    </main>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.twig" %}
+
+{% block title %}Register page{% endblock %}
+
+{% block content %}
+    <main class="main" style="height: 405px; margin-bottom: 17%">
+        <b><p class="section_title">Register</p></b>
+        <form action="{{ url_for('handle-form') }}" method="POST" accept-charset="utf-8" style="background-position: center top;">
+            <p class="text-gray">Username: <input type= "text" name="username" value="{% if formData.username %}{{ formData.username }}{% endif %}"></p>
+            {% if formErrors.username %}
+                <p style="color: red;">{{ formErrors.username }}</p>
+            {% endif %}
+            <p class="text-gray">Email: <input type= "text" name="email" value="{% if formData.email %}{{ formData.email }}{% endif %}"></p>
+            {% if formErrors.email %}
+                <p style="color: red;">{{ formErrors.email }}</p>
+            {% endif %}
+            <p class="text-gray">Password: <input type = "password" name="pass" value="{% if formData.pass %}{{ formData.pass }}{% endif %}"></p>
+            {% if formErrors.pass %}
+                <p style="color: red;">{{ formErrors.pass }}</p>
+            {% endif %}
+            <p class="text-gray">Confirm Password: <input type = "password" name="pass2" value="{% if formData.pass2 %}{{ formData.pass2 }}{% endif %}"></p>
+            <p class="text-gray">Birthday: <input type= "date" name="birthday" placeholder="yyyy-mm-dd" value="{% if formData.birthday %}{{ formData.birthday }}{% endif %}"></p>
+            {% if formErrors.birthday %}
+                <p style="color: red;">{{ formErrors.birthday }}</p>
+            {% endif %}
+            <p class="text-gray">Phone: <input type= "text" name="phone" value="{% if formData.phone %}{{ formData.phone }}{% endif %}"> (Optional)</p>
+            {% if formErrors.phone %}
+                <p style="color: red;">{{ formErrors.phone }}</p>
+            {% endif %}
+            <b ><input type="submit" class="btn btn-outline-dark me-2" name="submit" value="Send"  class="button-gray" style="margin-left: 2%" ></b>
+        </form>
+    </main>
+{% endblock %}
