@@ -1,0 +1,39 @@
+.footer_logo_steam {
+    float: right;
+    padding-top: 2px;
+    height: 31px;
+    width: 92px;
+    margin-left: 10%;
+}
+
+.footer_text {
+    float: left;
+    margin-left: 25%;
+    color: #8F98A0;
+    font-size: 12px;
+    line-height: 16px;
+    
+}
+
+footer {
+    float: left;
+    color: #8F98A0;
+    font-size: 12px;
+    line-height: 16px;
+    height: 15%;
+    width: 100%;
+}
+
+.footer_div{
+    margin-bottom: 2%; 
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15%;
+    width: 100%;
+}
+
+.links{
+    margin-left: 15%;
+}

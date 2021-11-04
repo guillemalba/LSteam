@@ -1,0 +1,42 @@
+Per utilitzar la base de dades i crear-la:
+1. Obrir el terminal i anar a la carpeta del projecte
+2. docker exec -it pw_local_env-db bash
+3. mysql -u root -p
+4. Posar de contrasenya admin
+5. USE test
+6. Crear les taules:
+
+DROP TABLE IF EXISTS User;
+CREATE TABLE User (
+ id int AUTO_INCREMENT,
+ username varchar(255) default NULL,
+ email varchar(255) default NULL,
+ password varchar(255) default NULL,
+ birthday date default NULL,
+ phone varchar(9) default NULL,
+ wallet float default NULL,
+ token int default NULL,
+ activate int default NULL,
+ profile_picture char(40) default NULL,
+ my_games varchar(1000) default NULL,
+ my_wish varchar(1000) default NULL,
+ PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS Friends;
+CREATE TABLE Friends (
+  id int AUTO_INCREMENT,
+  friend1 int default NULL,
+  friend2 int default NULL,
+  accept_date datetime default NULL,
+  accepted int default NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (friend1) REFERENCES User(id),
+  FOREIGN KEY (friend2) REFERENCES User(id)
+);
+
+DROP TABLE IF EXISTS Wishlist;
+CREATE TABLE Wishlist (
+  game_id int default NULL,
+  username varchar(255) default NULL
+);
